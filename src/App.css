@@ -3,7 +3,8 @@
 }
 
 .header {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./Images/PublicImages/image-2.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(46, 47, 47, 0.8)),
+        url('./Images/PublicImages/image-2.jpg') center / auto;
     opacity: var(--mainOpacity);
     height: 25em !important;
 }
@@ -19,7 +20,7 @@
 
 .main-color {
     background-color: #a599b5;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
