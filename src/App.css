@@ -20,8 +20,19 @@
 
 .main-color {
     background-color: #a599b5;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
+}
+
+.secondary-color {
+    background-color: #acbdba;
+    font-weight: 500;
+    color: #2e2f2f !important;
+    font-size: larger;
+}
+
+.tertiary-color {
+    color: #2e2f2f;
 }
 
 .col-image-left {

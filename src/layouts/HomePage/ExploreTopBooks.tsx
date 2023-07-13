@@ -5,7 +5,7 @@ export const ExploreTopBooks = () => {
                 <div>
                     <h1 className='display-5 fw-bold'>Find your next adventure</h1>
                     <p className='col-md-8 fs-4'>What would you like to read next?</p>
-                    <a href='/eplore' type='button' className='btn main-color btn-lg text-white'>
+                    <a href='/eplore' type='button' className='btn secondary-color btn-lg text-white'>
                         Explore top books
                     </a>
                 </div>
@@ -13,5 +13,3 @@ export const ExploreTopBooks = () => {
         </div>
     );
 };
-
-export default ExploreTopBooks();
