@@ -29,7 +29,7 @@ export const Carousel = () => {
                     copies: responseData[key].copies,
                     copiesAvailable: responseData[key].copiesAvailable,
                     category: responseData[key].category,
-                    img: responseData[key].data,
+                    img: responseData[key].img,
                 });
             }
             setBooks(loadedBooks);
