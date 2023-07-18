@@ -57,8 +57,11 @@ export const BookCheckoutPage = () => {
             }
 
             const responseJsonReviews = await responseReviews.json();
-            const responseData = responseJsonReviews._embeded.reviews;
+
+            const responseData = responseJsonReviews._embedded.reviews;
+
             const loadedReviews: ReviewModel[] = [];
+
             let weightedStarReviews: number = 0;
 
             for (const key in responseData) {
@@ -86,7 +89,7 @@ export const BookCheckoutPage = () => {
             setIsLoadingReview(false);
             setHttpError(error.message);
         });
-    }, [bookId]);
+    }, []);
 
     if (isLoadingBook || isLoadingReview) {
         return <SpinnerLoading />;
@@ -127,7 +130,7 @@ export const BookCheckoutPage = () => {
                             <h2>{book?.title}</h2>
                             <h5 className='text-primary'>{book?.author}</h5>
                             <p className='lead'>{book?.description}</p>
-                            <StarsReview rating={4.5} size={28} />
+                            <StarsReview rating={totalStars} size={28} />
                         </div>
                     </div>
 
@@ -155,7 +158,7 @@ export const BookCheckoutPage = () => {
                         <h2>{book?.title}</h2>
                         <h5 className='primary'>{book?.author}</h5>
                         <p className='lead'>{book?.description}</p>
-                        <StarsReview rating={4.5} size={28} />
+                        <StarsReview rating={totalStars} size={28} />
                     </div>
                 </div>
 
