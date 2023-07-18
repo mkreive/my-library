@@ -142,32 +142,32 @@ export const SearchBooksPage = () => {
                                 </button>
                                 <ul className='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
                                     <li onClick={() => categoryField('All')}>
-                                        <a className='dropdown-item' href='#'>
+                                        <a className='dropdown-item' href='/seach'>
                                             All
                                         </a>
                                     </li>
                                     <li onClick={() => categoryField('humor')}>
-                                        <a className='dropdown-item' href='#'>
+                                        <a className='dropdown-item' href='/search'>
                                             Humor
                                         </a>
                                     </li>
                                     <li onClick={() => categoryField('thriller')}>
-                                        <a className='dropdown-item' href='#'>
+                                        <a className='dropdown-item' href='/search'>
                                             Thriller
                                         </a>
                                     </li>
                                     <li onClick={() => categoryField('romance')}>
-                                        <a className='dropdown-item' href='#'>
+                                        <a className='dropdown-item' href='/search'>
                                             Romance
                                         </a>
                                     </li>
                                     <li onClick={() => categoryField('fantasy')}>
-                                        <a className='dropdown-item' href='#'>
+                                        <a className='dropdown-item' href='/search'>
                                             Fantasy
                                         </a>
                                     </li>
                                     <li onClick={() => categoryField('biography')}>
-                                        <a className='dropdown-item' href='#'>
+                                        <a className='dropdown-item' href='/search'>
                                             biography
                                         </a>
                                     </li>
