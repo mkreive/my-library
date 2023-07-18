@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import BookModel from '../../models/BookModel';
+import { Pagination } from '../Utils/Pagination';
 import { SpinnerLoading } from '../Utils/SpinnerLoading';
 import { SearchBook } from './components/SearchBook';
-import { Pagination } from '../Utils/Pagination';
 
 export const SearchBooksPage = () => {
     const [books, setBooks] = useState<BookModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const [booksPerPage, setBooksPerPage] = useState(5);
+    const [booksPerPage] = useState(5);
     const [totalAmountOfBooks, setTotalAmountOfBooks] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [search, setSearch] = useState('');
     const [searchUrl, setSearchUrl] = useState('');
+    const [categorySelection, setCategorySelection] = useState('Book category');
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -81,13 +82,32 @@ export const SearchBooksPage = () => {
         if (search === '') {
             setSearchUrl('');
         } else {
-            setSearchUrl(`/search/findByTitleContaining?title=${search}&page=0&size=${booksPerPage}`);
+            setSearchUrl(`/search/findByTitle?title=${search}&page=0&size=${booksPerPage}`);
+        }
+    };
+
+    const categoryField = (value: string) => {
+        console.log(value);
+        if (
+            value.toLowerCase() === 'fantasy' ||
+            value.toLowerCase() === 'humor' ||
+            value.toLowerCase() === 'thriller' ||
+            value.toLowerCase() === 'biography' ||
+            value.toLowerCase() === 'drama' ||
+            value.toLowerCase() === 'romance'
+        ) {
+            setCategorySelection(value);
+            setSearchUrl(`/search/findByCategory?category=${value}&page=0&size=${booksPerPage}`);
+        } else {
+            setCategorySelection('All');
+            setSearchUrl(`?page=0&size=${booksPerPage}`);
         }
     };
 
     const indexOfLastBook: number = currentPage * booksPerPage;
     const indexOfFirstBook: number = indexOfLastBook - booksPerPage;
     let lastItem = booksPerPage * currentPage <= totalAmountOfBooks ? booksPerPage * currentPage : totalAmountOfBooks;
+
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     return (
@@ -117,38 +137,44 @@ export const SearchBooksPage = () => {
                                     id='dropdownMenuButton1'
                                     data-bs-toggle='dropdown'
                                     aria-expanded='false'
-                                ></button>
+                                >
+                                    {categorySelection}
+                                </button>
                                 <ul className='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
-                                    <li>
-                                        <a className='dropdown-item' href='/home'>
+                                    <li onClick={() => categoryField('All')}>
+                                        <a className='dropdown-item' href='#'>
                                             All
                                         </a>
                                     </li>
-                                    <li>
-                                        <a className='dropdown-item' href='/home'>
-                                            Front End
+                                    <li onClick={() => categoryField('humor')}>
+                                        <a className='dropdown-item' href='#'>
+                                            Humor
                                         </a>
                                     </li>
-                                    <li>
-                                        <a className='dropdown-item' href='/home'>
-                                            Back End
+                                    <li onClick={() => categoryField('thriller')}>
+                                        <a className='dropdown-item' href='#'>
+                                            Thriller
                                         </a>
                                     </li>
-                                    <li>
-                                        <a className='dropdown-item' href='/home'>
-                                            Data
+                                    <li onClick={() => categoryField('romance')}>
+                                        <a className='dropdown-item' href='#'>
+                                            Romance
                                         </a>
                                     </li>
-                                    <li>
-                                        <a className='dropdown-item' href='/home'>
-                                            DevOps
+                                    <li onClick={() => categoryField('fantasy')}>
+                                        <a className='dropdown-item' href='#'>
+                                            Fantasy
+                                        </a>
+                                    </li>
+                                    <li onClick={() => categoryField('biography')}>
+                                        <a className='dropdown-item' href='#'>
+                                            biography
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
                     {totalAmountOfBooks > 0 ? (
                         <>
                             <div className='mt-3'>
@@ -173,7 +199,6 @@ export const SearchBooksPage = () => {
                             </a>
                         </div>
                     )}
-
                     {totalPages > 1 && (
                         <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate} />
                     )}
