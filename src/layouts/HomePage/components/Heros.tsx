@@ -1,4 +1,9 @@
+import { useOktaAuth } from '@okta/okta-react';
+import { Link } from 'react-router-dom';
+
 export const Heros = () => {
+    const { authState } = useOktaAuth();
+
     return (
         <div>
             <div className='d-none d-lg-block'>
@@ -13,6 +18,15 @@ export const Heros = () => {
                                 The library team would love to know what you have been reading. Whether it is to learn a
                                 new skill or grow within one, we will be able to provide the top content for you!
                             </p>
+                            {authState?.isAuthenticated ? (
+                                <Link type='button' className='btn main-color btn-lg text-white' to='search'>
+                                    Explore top books
+                                </Link>
+                            ) : (
+                                <Link to='/login' className='btn main-color btn-lg text-white'>
+                                    Sign up
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -58,6 +72,15 @@ export const Heros = () => {
                                 the most accurate book selection possible for our readers! We are diligent about our
                                 book selection and our books are always going to be our top priority.
                             </p>
+                            {authState?.isAuthenticated ? (
+                                <Link type='button' className='btn main-color btn-lg text-white' to='search'>
+                                    Explore top books
+                                </Link>
+                            ) : (
+                                <Link to='/login' className='btn main-color btn-lg text-white'>
+                                    Sign up
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>
