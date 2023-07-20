@@ -30,6 +30,7 @@ export const BookCheckoutPage = () => {
     const [isLoadingBookCheckedOut, setIsLoadingBookCheckedOut] = useState(true);
 
     const bookId = window.location.pathname.split('/')[2];
+    console.log(authState);
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -111,7 +112,7 @@ export const BookCheckoutPage = () => {
     useEffect(() => {
         const fetchUserReviewBook = async () => {
             if (authState && authState.isAuthenticated) {
-                const url = `/api/reviews/secure/book?bookId=${bookId}`;
+                const url = `/api/reviews/secure/user/book?bookId=${bookId}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -132,7 +133,7 @@ export const BookCheckoutPage = () => {
             setIsLoadingUserReview(false);
             setHttpError(error.message);
         });
-    }, [authState]);
+    }, [isReviewLeft]);
 
     useEffect(() => {
         const fetchUserCurrentLoansCount = async () => {
@@ -201,7 +202,6 @@ export const BookCheckoutPage = () => {
     }
 
     async function checkoutBook() {
-        console.log(authState);
         const url = `/api/books/secure/checkout?bookId=${book?.id}`;
         const requestOptions = {
             method: 'PUT',
@@ -236,7 +236,7 @@ export const BookCheckoutPage = () => {
                     <div className='col-4 col-md-4 container'>
                         <div className='ml-2'>
                             <h2>{book?.title}</h2>
-                            <h5 className='text-primary'>{book?.author}</h5>
+                            <h3 className='text-primary'>{book?.author}</h3>
                             <p className='lead'>{book?.description}</p>
                             <StarsReview rating={totalStars} size={32} />
                         </div>
@@ -248,6 +248,7 @@ export const BookCheckoutPage = () => {
                         isAuthenticated={authState?.isAuthenticated}
                         isCheckedOut={isCheckedOut}
                         checkoutBook={checkoutBook}
+                        isReviewLeft={isReviewLeft}
                     />
                 </div>
                 <hr />
@@ -269,7 +270,7 @@ export const BookCheckoutPage = () => {
                 <div className='mt-4'>
                     <div className='ml-2'>
                         <h2>{book?.title}</h2>
-                        <h5 className='text-primary'>{book?.author}</h5>
+                        <h3 className='text-primary'>{book?.author}</h3>
                         <p className='lead'>{book?.description}</p>
                         <StarsReview rating={totalStars} size={32} />
                     </div>
@@ -281,6 +282,7 @@ export const BookCheckoutPage = () => {
                     isAuthenticated={authState?.isAuthenticated}
                     isCheckedOut={isCheckedOut}
                     checkoutBook={checkoutBook}
+                    isReviewLeft={isReviewLeft}
                 />
                 <hr />
                 <LatestReviews reviews={reviews} bookId={book?.id} mobile={true} />

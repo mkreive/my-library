@@ -10,7 +10,7 @@ export const LatestReviews: React.FC<{
     return (
         <div className={props.mobile ? 'mt-3' : 'row mt-5'}>
             <div className={props.mobile ? '' : 'col-sm-2 col-md-2'}>
-                <h2>Latest Reviews: </h2>
+                <h4>Latest Reviews: </h4>
             </div>
             <div className='col-sm-10 col-md-10'>
                 {props.reviews.length > 0 ? (
@@ -25,7 +25,7 @@ export const LatestReviews: React.FC<{
                                 className='btn main-color btn-md text-white'
                                 to={`/reviewlist/${props.bookId}`}
                             >
-                                Reach all reviews.
+                                Reach all reviews
                             </Link>
                         </div>
                     </>
