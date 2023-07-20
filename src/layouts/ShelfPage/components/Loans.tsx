@@ -33,11 +33,13 @@ export const Loans = () => {
                 setShelfCurrentLoans(shelfCurrentLoansResponseJson);
             }
             setIsLoadingUserLoans(false);
+            console.log(shelfCurrentLoans);
         };
         fetchUserCurrentLoans().catch((error: any) => {
             setIsLoadingUserLoans(false);
             setHttpError(error.message);
         });
+
         window.scrollTo(0, 0);
     }, [authState, checkout]);
 
@@ -54,7 +56,7 @@ export const Loans = () => {
     }
 
     async function returnBook(bookId: number) {
-        const url = `/api/books/secure/return/?bookId=${bookId}`;
+        const url = `/api/books/secure/return?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -70,7 +72,7 @@ export const Loans = () => {
     }
 
     async function renewLoan(bookId: number) {
-        const url = `/api/books/secure/renew/loan/?bookId=${bookId}`;
+        const url = `/api/books/secure/renew/loan?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
