@@ -9,7 +9,6 @@ import { useOktaAuth } from '@okta/okta-react';
 
 export const BookCheckoutPage = () => {
     const { authState } = useOktaAuth();
-    console.log(authState);
     const [book, setBook] = useState<BookModel>();
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
@@ -201,6 +200,23 @@ export const BookCheckoutPage = () => {
         );
     }
 
+    async function checkoutBook() {
+        console.log(authState);
+        const url = `/api/books/secure/checkout?bookId=${book?.id}`;
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                'Content-Type': 'application/json',
+            },
+        };
+        const checkoutResponse = await fetch(url, requestOptions);
+        if (!checkoutResponse.ok) {
+            throw new Error('Something went wrong!');
+        }
+        setIsCheckedOut(true);
+    }
+
     return (
         <div>
             <div className='container d-none d-lg-block'>
@@ -231,6 +247,7 @@ export const BookCheckoutPage = () => {
                         currentLoansCount={currentLoansCount}
                         isAuthenticated={authState?.isAuthenticated}
                         isCheckedOut={isCheckedOut}
+                        checkoutBook={checkoutBook}
                     />
                 </div>
                 <hr />
@@ -263,6 +280,7 @@ export const BookCheckoutPage = () => {
                     currentLoansCount={currentLoansCount}
                     isAuthenticated={authState?.isAuthenticated}
                     isCheckedOut={isCheckedOut}
+                    checkoutBook={checkoutBook}
                 />
                 <hr />
                 <LatestReviews reviews={reviews} bookId={book?.id} mobile={true} />
