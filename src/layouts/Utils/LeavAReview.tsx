@@ -94,7 +94,7 @@ export const LeaveAReview: React.FC<{ submitReview: any }> = (props) => {
                         <button
                             type='button'
                             onClick={() => props.submitReview(starInput, reviewDescription)}
-                            className='btn btn-primary mt-3'
+                            className='btn btn-secondary mt-3'
                         >
                             Submit Review
                         </button>
