@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SpinnerLoading } from '../../Utils/SpinnerLoading';
 import ShelfCurrentLoans from '../../../models/ShelfCurrentLoans';
+import { LoansModal } from './LoansModal';
 
 export const Loans = () => {
     const { authState } = useOktaAuth();
@@ -98,7 +99,12 @@ export const Loans = () => {
                                 <div className='row mt-3 mb-3'>
                                     <div className='col-4 col-md-4 container'>
                                         {shelfCurrentLoan.book?.img ? (
-                                            <img src={shelfCurrentLoan.book?.img} width='226' height='349' alt='Book' />
+                                            <img
+                                                src={`data:image/jpeg;base64,${shelfCurrentLoan.book?.img}`}
+                                                width='226'
+                                                height='349'
+                                                alt='Book'
+                                            />
                                         ) : (
                                             <img
                                                 src={require('./../../../Images/BooksImages/new-book-fallback.png')}
@@ -156,12 +162,12 @@ export const Loans = () => {
                                     </div>
                                 </div>
                                 <hr />
-                                {/* <LoansModal
+                                <LoansModal
                                     shelfCurrentLoan={shelfCurrentLoan}
                                     mobile={false}
                                     returnBook={returnBook}
                                     renewLoan={renewLoan}
-                                /> */}
+                                />
                             </div>
                         ))}
                     </>
@@ -185,7 +191,12 @@ export const Loans = () => {
                             <div key={shelfCurrentLoan.book.id}>
                                 <div className='d-flex justify-content-center align-items-center'>
                                     {shelfCurrentLoan.book?.img ? (
-                                        <img src={shelfCurrentLoan.book?.img} width='226' height='349' alt='Book' />
+                                        <img
+                                            src={`data:image/jpeg;base64,${shelfCurrentLoan.book?.img}`}
+                                            width='226'
+                                            height='349'
+                                            alt='Book'
+                                        />
                                     ) : (
                                         <img
                                             src={require('./../../../Images/BooksImages/new-book-fallback.png')}
@@ -235,12 +246,12 @@ export const Loans = () => {
                                 </div>
 
                                 <hr />
-                                {/* <LoansModal
+                                <LoansModal
                                     shelfCurrentLoan={shelfCurrentLoan}
                                     mobile={true}
                                     returnBook={returnBook}
                                     renewLoan={renewLoan}
-                                /> */}
+                                />
                             </div>
                         ))}
                     </>
