@@ -1,9 +1,8 @@
 import { useOktaAuth } from '@okta/okta-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ShelfCurrentLoans from '../../../models/ShelfCurrentLoans';
 import { SpinnerLoading } from '../../Utils/SpinnerLoading';
-import { LoansModal } from './LoansModal';
+import ShelfCurrentLoans from '../../../models/ShelfCurrentLoans';
 
 export const Loans = () => {
     const { authState } = useOktaAuth();
@@ -17,7 +16,7 @@ export const Loans = () => {
     useEffect(() => {
         const fetchUserCurrentLoans = async () => {
             if (authState && authState.isAuthenticated) {
-                const url = `http://localhost:8080/api/books/secure/currentloans`;
+                const url = `/api/books/secure/currentloans`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -54,7 +53,7 @@ export const Loans = () => {
     }
 
     async function returnBook(bookId: number) {
-        const url = `http://localhost:8080/api/books/secure/return/?bookId=${bookId}`;
+        const url = `/api/books/secure/return/?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -70,7 +69,7 @@ export const Loans = () => {
     }
 
     async function renewLoan(bookId: number) {
-        const url = `http://localhost:8080/api/books/secure/renew/loan/?bookId=${bookId}`;
+        const url = `/api/books/secure/renew/loan/?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -102,7 +101,7 @@ export const Loans = () => {
                                             <img src={shelfCurrentLoan.book?.img} width='226' height='349' alt='Book' />
                                         ) : (
                                             <img
-                                                src={require('./../../../Images/BooksImages/book-luv2code-1000.png')}
+                                                src={require('./../../../Images/BooksImages/new-book-fallback.png')}
                                                 width='226'
                                                 height='349'
                                                 alt='Book'
@@ -157,12 +156,12 @@ export const Loans = () => {
                                     </div>
                                 </div>
                                 <hr />
-                                <LoansModal
+                                {/* <LoansModal
                                     shelfCurrentLoan={shelfCurrentLoan}
                                     mobile={false}
                                     returnBook={returnBook}
                                     renewLoan={renewLoan}
-                                />
+                                /> */}
                             </div>
                         ))}
                     </>
@@ -189,7 +188,7 @@ export const Loans = () => {
                                         <img src={shelfCurrentLoan.book?.img} width='226' height='349' alt='Book' />
                                     ) : (
                                         <img
-                                            src={require('./../../../Images/BooksImages/book-luv2code-1000.png')}
+                                            src={require('./../../../Images/BooksImages/new-book-fallback.png')}
                                             width='226'
                                             height='349'
                                             alt='Book'
@@ -236,12 +235,12 @@ export const Loans = () => {
                                 </div>
 
                                 <hr />
-                                <LoansModal
+                                {/* <LoansModal
                                     shelfCurrentLoan={shelfCurrentLoan}
                                     mobile={true}
                                     returnBook={returnBook}
                                     renewLoan={renewLoan}
-                                />
+                                /> */}
                             </div>
                         ))}
                     </>
