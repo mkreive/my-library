@@ -25,6 +25,7 @@ export const ManageLibraryPage = () => {
         setChangeQuantityOfBooksClick(false);
         setMessagesClick(true);
     }
+    console.log(authState);
 
     if (authState?.accessToken?.claims.userType === undefined) {
         return <Redirect to='/home' />;

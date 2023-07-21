@@ -56,15 +56,14 @@ export const App = () => {
 
                         <Route path='/login' render={() => <LoginWidget config={oktaConfig} />} />
                         <Route path='/login/callback' component={LoginCallback} />
+                        <Route path='/login/callback' component={LoginCallback} />
 
                         <SecureRoute path='/shelf'>
                             <ShelfPage />
                         </SecureRoute>
-
                         <SecureRoute path='/messages'>
                             <MessagesPage />
                         </SecureRoute>
-
                         <SecureRoute path='/admin'>
                             <ManageLibraryPage />
                         </SecureRoute>
