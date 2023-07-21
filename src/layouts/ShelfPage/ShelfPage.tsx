@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Loans } from './components/Loans';
+import { HistoryPage } from './components/HistoryPage';
 
 export const ShelfPage = () => {
     const [historyClick, setHistoryClick] = useState(false);
@@ -47,7 +48,7 @@ export const ShelfPage = () => {
                         <Loans />
                     </div>
                     <div className='tab-pane fade' id='nav-history' role='tabpanel' aria-labelledby='nav-history-tab'>
-                        {/* {historyClick ? <HistoryPage /> : <></>} */}
+                        {historyClick ? <HistoryPage /> : <></>}
                     </div>
                 </div>
             </div>
